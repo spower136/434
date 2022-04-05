@@ -2,7 +2,7 @@ setup:
 	python3 -m venv ~/.434
 
 install:
-	pip install -r requirements.txt
+	pip3 install -r requirements.txt
 
 test:
 	python -m pytest -vv --cov=myrepolib tests/*.py
