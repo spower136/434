@@ -1,9 +1,19 @@
-pytest
-pylint
 jupyter
-pytest-cov
 pandas
 nbval
 click
 flask
 requests
+pytest==7.1.1
+pytest-cov==3.0.0
+pylint==2.13.5
+black==22.3.0
+nbval==0.9.6
+fire==0.4.0
+click==8.1.2
+fastapi==0.75.1
+uvicorn==0.17.6
+gunicorn
+dash == 2.0.0
+dash_bootstrap_components == 1.0.2
+numpy == 1.21.4
