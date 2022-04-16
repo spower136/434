@@ -5,11 +5,11 @@ install:
 	pip3 install -r requirements.txt
 
 test:
-	python -m pytest -vv --cov=myrepolib tests/*.py
+	python -m pytest -vv --cov=fruitlib  #tests/*.py
 	# python -m pytest --nbval notebook.ipynb
 
 
 lint:
-	pylint --disable=R,C myrepolib
+	pylint --disable=R,C fruitlib
 
 all: setup install test lint
