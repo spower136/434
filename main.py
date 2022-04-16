@@ -10,12 +10,26 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.COSMO])
 server = app.server
 app.config.suppress_callback_exceptions = True
 
-@app.get("/")
-async def root():
+
+
+app.layout = html.Div(
+    [
+        dbc.Row(html.A(), style={"height": "20px"}),
+        dbc.Row(
+            dbc.Col([html.H1("434 project")]),
+            justify="center",
+            align="center",
+            style={"text-align": "center"},
+        ),
+    ],
+)
+
+# @app.get("/")
+def root():
     return {"message": "Hello Functions From Zero 2"}
 
-@app.get("/fruits/{fruit}")
-async def myfruit(fruit: str):
+# @app.get("/fruits/{fruit}")
+def myfruit(fruit: str):
     """Adds a fruit to random fruit"""
 
     chosen_random_fruit = fruit_generator(fruit)

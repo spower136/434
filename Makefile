@@ -5,7 +5,7 @@ install:
 	pip3 install -r requirements.txt
 
 test:
-	python -m pytest -vv --cov=fruitlib  #tests/*.py
+	python -m pytest -vv --cov=fruitlib  main.py
 	# python -m pytest --nbval notebook.ipynb
 
 
