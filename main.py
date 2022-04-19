@@ -17,45 +17,51 @@ def stock_prices():
     fig = go.Figure([go.Scatter(x = df['date'], y = df['GOOG'],\
                      line = dict(color = 'firebrick', width = 4), name = 'Google')
                      ])
-    fig.update_layout(title = 'Prices over time',
+    fig.update_layout(title = 'GOOG - Prices Over Time',
                       xaxis_title = 'Dates',
                       yaxis_title = 'Prices'
                       )
     return fig  
 
- 
-app.layout = html.Div(id = 'parent', children = [
-    html.H1(id = 'H1', children = 'Styling using html components', style = {'textAlign':'center',\
-                                            'marginTop':40,'marginBottom':40}),
+stock_price_graph = dcc.Graph(id = 'line_plot', figure = stock_prices())    
+dropdown = dbc.Select( id = 'dropdown',
+            options = [
+                {'label':'Google', 'value':'GOOG' },
+                {'label': 'Apple', 'value':'AAPL'},
+                {'label': 'Amazon', 'value':'AMZN'},
+                ],
+            value = 'GOOG',     
+            )
 
-        
-        dcc.Graph(id = 'line_plot', figure = stock_prices())    
+app.layout = html.Div(id = 'parent', children = [ 
+    html.Div(
+        [
+            html.H1(id = 'H1', children = 'Stock prices over time', style = {'textAlign':'center','marginTop':40,'marginBottom':40}),
+            dropdown,
+            stock_price_graph     
+        ]
+    )
     ]
-                     )
-
-
-dcc.Dropdown( id = 'dropdown',
-options = [
-    {'label':'Google', 'value':'GOOG' },
-    {'label': 'Apple', 'value':'AAPL'},
-    {'label': 'Amazon', 'value':'AMZN'},
-    ],
-value = 'GOOGL'       
 )
 
 @app.callback(Output(component_id='line_plot', component_property= 'figure'),
-              [Input(component_id='dropdown', component_property= 'value')])
+              Output(component_id='H1', component_property='children'),
+              Input(component_id='dropdown', component_property= 'value'))
 def graph_update(dropdown_value):
-    print(dropdown_value)
+    labels = {
+        'GOOG':'Google',
+        'AAPL':'Apple',
+        'AMZN':'Amazon'
+    }
     fig = go.Figure([go.Scatter(x = df['date'], y = df['{}'.format(dropdown_value)],\
                      line = dict(color = 'firebrick', width = 4))
                      ])
     
-    fig.update_layout(title = 'Stock prices over time',
+    fig.update_layout(title = '',
                       xaxis_title = 'Dates',
                       yaxis_title = 'Prices'
                       )
-    return fig 
+    return fig, f'{labels[dropdown_value]} Prices Over Time'
 
 
 
