@@ -1,14 +1,9 @@
 import requests
 import pandas as pd
 import json
-# from google.cloud import bigquery
-# from google.oauth2 import service_account
-# import pandas_gbq
 import numpy as np
 import datetime as dt
-# import gcsfc
 
-# from google_auth_oauthlib import flow
 
 import yfinance as yf
 
@@ -19,11 +14,6 @@ symbols = {'AAPL':yf.Ticker("AAPL"),
      }
 
 
-# def params(): 
-#    return {
-#     'period':'6mo',
-#     'interval':'1d'
-#     }
 
 def get_df():
     df = pd.DataFrame()

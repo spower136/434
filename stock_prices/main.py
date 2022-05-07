@@ -64,7 +64,7 @@ def export_items_to_bigquery():
             bigquery.SchemaField('Symbol', 'STRING', mode='NULLABLE'),
         ],
 
-        write_disposition="WRITE_TRUNCATE",
+        write_disposition="WRITE_APPEND",
         autodetect=True,
         source_format=bigquery.SourceFormat.CSV,
         field_delimiter = ','
