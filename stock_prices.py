@@ -37,7 +37,7 @@ import yfinance as yf
 
 # stock_prices = call(url)
 # stock_prices = stock_prices
-symbols = ['AAPL','GOOG','AMZN']
+# symbols = "AAPL,GOOG,AMZN"
 symbols = {'AAPL':yf.Ticker("AAPL"),
         'GOOG':yf.Ticker("GOOG"),
         'AMZN':yf.Ticker("AMZN"),
@@ -47,26 +47,25 @@ symbols = {'AAPL':yf.Ticker("AAPL"),
 
 def params(): 
    return {
-    'period':'6mo',
-    'interval':'2m'
+    'period':'1d',
+    'interval':'1d',
+    'group_by':'ticker'
     }
 
 
 
 def get_df():
-    # df = pd.DataFrame(yf.download(tickers=symbols,params=params()))
-    df = pd.DataFrame(columns=['Date','Open','High','Low','Close','Volume','Dividends', 'Stock Splits'])
-    print(df.head())
+    df = pd.DataFrame()
+    # print(df.head())
     for stock in symbols.values():
-        df2 = pd.DataFrame(stock.history(params=params),columns=['Date','Open','High','Low','Close','Volume','Dividends', 'Stock Splits'])
+        df2 = pd.DataFrame(stock.history(params=params)).reset_index()
         df2['Symbol'] = stock
-        df2['Date'] = df2['Date'].replace(np.nan, '02-02-2022')
-        df = df.append(df2, ignore_index=True)
+        df = df.append(df2, ignore_index=False)
+
         
     return df
 
     
-
 data = get_df()
 print(data.head())
 print(data.info())
