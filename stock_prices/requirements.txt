@@ -1,0 +1,33 @@
+jupyter
+pandas
+nbval
+click
+flask
+requests
+pytest==7.1.1
+pytest-cov==3.0.0
+pylint==2.13.5
+black==22.3.0
+fire==0.4.0
+fastapi==0.75.1
+uvicorn==0.17.
+gunicorn
+dash == 2.0.0
+dash_bootstrap_components == 1.0.2
+numpy == 1.21.4
+anyio == 3.5.0
+Werkzeug==2.0.0
+google-api-core==1.23.0
+google-api-python-client==1.12.5
+google-auth==1.23.0
+google-auth-httplib2==0.0.4
+google-auth-oauthlib==0.4.2
+google-cloud-core==1.4.3
+google-cloud-secret-manager==2.5.0
+google-cloud-bigquery
+google-cloud-storage==1.32.0
+google-crc32c==1.0.0
+google-oauth==1.0.1
+google-resumable-media==1.1.0
+googleapis-common-protos==1.52.0
+yfinance
