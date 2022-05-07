@@ -18,22 +18,18 @@ symbols = {'AAPL':yf.Ticker("AAPL"),
         'AMZN':yf.Ticker("AMZN"),
      }
 
- 
 
-def params(): 
-   return {
-    'period':'1d',
-    'interval':'1d'
-    }
-
-
+# def params(): 
+#    return {
+#     'period':'6mo',
+#     'interval':'1d'
+#     }
 
 def get_df():
     df = pd.DataFrame()
-    # print(df.head())
-    for stock in symbols.values():
-        df2 = pd.DataFrame(stock.history(period="1d", interval="1d")).reset_index()
-        df2['Symbol'] = stock
+    for stock in symbols.items():
+        df2 = pd.DataFrame(stock[1].history(period="1d", interval="1d")).reset_index()
+        df2['Symbol'] = stock[0]
         df = df.append(df2, ignore_index=False)
 
         
