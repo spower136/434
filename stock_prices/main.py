@@ -7,7 +7,7 @@ import stock_prices
 # import pyarrow.parquet as pq
 
 
-key_path = "/msds_434.json"
+key_path = "msds_434.json"
 
 credentials = service_account.Credentials.from_service_account_file(key_path)
 project = 'msds-434-347202'
@@ -40,7 +40,7 @@ def bq_create_table():
 def export_items_to_bigquery():
     df = stock_prices.get_df()
     df.to_csv('stock_prices.csv',index=False)
-    data = '/Users/shannon/Desktop/434/stock_prices/stock_prices.csv'
+    data = 'stock_prices.csv'
     
     # Instantiates a client
     bigquery_client = bigquery.Client(project=project, credentials=credentials)

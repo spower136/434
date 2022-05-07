@@ -32,7 +32,7 @@ def get_df():
     df = pd.DataFrame()
     # print(df.head())
     for stock in symbols.values():
-        df2 = pd.DataFrame(stock.history(params=params)).reset_index()
+        df2 = pd.DataFrame(stock.history(period="1d", interval="1d")).reset_index()
         df2['Symbol'] = stock
         df = df.append(df2, ignore_index=False)
 
