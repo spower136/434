@@ -1,18 +1,9 @@
 from google.cloud import bigquery
 from google.oauth2 import service_account
 import stock_prices
-# from pandas.io import gbq
-# import pandas_gbq
-# import pyarrow as pa
-# import pyarrow.parquet as pq
+from utils import get_client
 
-
-key_path = "msds_434.json"
-
-credentials = service_account.Credentials.from_service_account_file(key_path)
-project = 'msds-434-347202'
-client = bigquery.Client(project=project, credentials=credentials)
-# print(client)
+bigquery_client = get_client()
 
 def bq_create_dataset():
     bigquery_client = bigquery.Client()
@@ -37,13 +28,14 @@ def bq_create_table():
     table = bigquery_client.create_table(table)
     print('table {} created.'.format(table.table_id))
 
+
 def export_items_to_bigquery():
     df = stock_prices.get_df()
     df.to_csv('stock_prices.csv',index=False)
     data = 'stock_prices.csv'
     
     # Instantiates a client
-    bigquery_client = bigquery.Client(project=project, credentials=credentials)
+    # bigquery_client = bigquery.Client(project=project, credentials=credentials)
 
     # Prepares a reference to the dataset
     dataset_ref = bigquery_client.dataset('stock_prices')
@@ -71,7 +63,7 @@ def export_items_to_bigquery():
     )
 
 
-    job = client.load_table_from_file(
+    job = bigquery_client.load_table_from_file(
         open(data, "rb"), table , job_config=job_config
     )  # Make an API request.
     job.result()  # Wait for the job to complete.
