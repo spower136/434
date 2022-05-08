@@ -27,7 +27,7 @@ def bq_create_table():
     table_ref = dataset_ref.table('stock_details')
     table_ref = 'msds-434-347202.stock_prices.stock_details'
 
-    table = bigquery.Table('msds-434-347202.stock_prices.stock_details', schema=schema)
+    # table = bigquery.Table('msds-434-347202.stock_prices.stock_details', schema=schema)
     table = bigquery_client.create_table(table)
     print('table {} created.'.format(table.table_id))
 
