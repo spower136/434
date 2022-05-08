@@ -1,0 +1,12 @@
+steps:
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  args:
+  - gcloud
+  - functions
+  - deploy
+  - daily_stock_prices #Function name
+  - --region=us-central1
+  - --source=stock_prices # git name
+  - --trigger-http
+
+timeout: 1800s
