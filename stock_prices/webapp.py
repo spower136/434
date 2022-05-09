@@ -57,9 +57,11 @@ def graph_update(dropdown_value):
         'AAPL':'Apple',
         'AMZN':'Amazon'
     }
-    fig = go.Figure([go.Scatter(x = df['Date'], y = df['{}'.format(dropdown_value)],\
-                     line = dict(color = 'firebrick', width = 4))
-                     ])
+
+    fig = px.scatter(df.loc[df['Symbol'] == dropdown_value], x = 'Date', y = 'Close', color= 'Symbol' )
+    # go.Figure([go.Scatter(x = df['Date'], y = df['Symbol'] = df['{}'.format(dropdown_value)],\
+    #                  line = dict(color = 'firebrick', width = 4))
+    #                  ])
     
     fig.update_layout(title = '',
                       xaxis_title = 'Date',
@@ -68,29 +70,6 @@ def graph_update(dropdown_value):
     return fig, f'{labels[dropdown_value]} Prices Over Time'
 
 
-
-# # @app.get("/")
-# def root():
-#     return {"message": "Hello Functions From Zero 2"}
-
-# # @app.get("/fruits/{fruit}")
-# def myfruit(fruit: str):
-#     """Adds a fruit to random fruit"""
-
-#     chosen_random_fruit = fruit_generator(fruit)
-#     return {"random_fruit": chosen_random_fruit}
-
-# app.layout = html.Div(
-#     [
-#         dbc.Row(html.A(), style={"height": "20px"}),
-#         dbc.Row(
-#             dbc.Col([html.H1("434 project")]),
-#             justify="center",
-#             align="center",
-#             style={"text-align": "center"},
-#         ),
-#     ],
-# )
 
 if __name__ == "__webapp__":
     app.run_server(debug=True, host="0.0.0.0", port=8080, use_reloader=False)
