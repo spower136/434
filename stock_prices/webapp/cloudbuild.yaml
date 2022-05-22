@@ -3,22 +3,22 @@ steps:
   args: [ 'build', '-t', 'us-west2-docker.pkg.dev/stock-prices-project/stock-prices-repo/stock-image:latest', '.' ]
 images:
 - 'us-west2-docker.pkg.dev/stock-prices-project/stock-prices-repo/stock-image:latest'
-- name: 'gcr.io/kaniko-project/executor:latest'
-  args:
-  - --destination=us-west2-docker.pkg.dev/stock-prices-project/stock-prices-repo/stock-image:latest
-  - --cache=true
-  - --cache-ttl=24h
-  id: image
-- name: gcr.io/cloud-builders/docker
-  # entrypoint: "bash"
-  args:
-  - "-c"
-  - |
-      gcloud run deploy stock-image \
-        --image=us-west2-docker.pkg.dev/stock-prices-project/stock-prices-repo/stock-image:latest \
-        --region=us-west2 \
-        --project=stock-prices-project
-  waitFor: ['image']
-# options:
+# - name: 'gcr.io/kaniko-project/executor:latest'
+#   args:
+#   - --destination=us-west2-docker.pkg.dev/stock-prices-project/stock-prices-repo/stock-image:latest
+#   - --cache=true
+#   - --cache-ttl=24h
+#   id: image
+# - name: gcr.io/cloud-builders/docker
+#   # entrypoint: "bash"
+#   args:
+#   - "-c"
+#   - |
+#       gcloud run deploy stock-image \
+#         --image=us-west2-docker.pkg.dev/stock-prices-project/stock-prices-repo/stock-image:latest \
+#         --region=us-west2 \
+#         --project=stock-prices-project
+#   waitFor: ['image']
+# # options:
     # machineType: 'E2_HIGHCPU_32'
 timeout: 14400s
