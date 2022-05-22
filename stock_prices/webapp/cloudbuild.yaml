@@ -10,7 +10,7 @@ steps:
   - --cache-ttl=24h
   id: image
 - name: gcr.io/cloud-builders/docker
-  entrypoint: "bash"
+  # entrypoint: "bash"
   args:
   - "-c"
   - |
