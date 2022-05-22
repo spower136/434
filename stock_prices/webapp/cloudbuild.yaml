@@ -3,7 +3,6 @@
 #   args: [ 'build', '-t', 'us-west2-docker.pkg.dev/stock-prices-project/stock-prices-repo/stock-image:latest', '.' ]
 # images:
 # - 'us-west2-docker.pkg.dev/stock-prices-project/stock-prices-repo/stock-image:latest'
-
 # timeout: 14400s
 steps:
 - name: 'gcr.io/kaniko-project/executor:latest'
