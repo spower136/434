@@ -5,6 +5,7 @@ from dash import Input, Output, State, html, dcc
 import plotly.graph_objects as go
 import plotly.express as px
 import bigquery
+import os
 
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.COSMO])
@@ -72,4 +73,4 @@ def graph_update(dropdown_value):
 
 
 if __name__ == "__webapp__":
-    app.run_server(debug=True, host="0.0.0.0", port=8080, use_reloader=False)
+    app.run_server(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)), use_reloader=False)
