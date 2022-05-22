@@ -16,7 +16,6 @@ steps:
   - |
       gcloud run deploy stock-image \
         --image=us-west2-docker.pkg.dev/stock-prices-project/stock-prices-repo/stock-image:latest \
-        --platform=managed \
         --region=us-west2 \
         --project=stock-prices-project
   waitFor: ['image']
