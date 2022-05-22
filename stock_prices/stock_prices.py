@@ -26,9 +26,9 @@ def get_df():
     return df
 
     
-data = get_df()
-print(data.head())
-print(data.info())
+# data = get_df()
+# print(data.head())
+# print(data.info())
 
 
 

@@ -5,26 +5,8 @@ steps:
   - functions
   - deploy
   - daily_stock_prices #Function name
-  - --region=us-central1
+  - --region=us-west2
   - --source=stock_prices # git name
-  - --trigger-http
-- name: 'gcr.io/kaniko-project/executor:latest'
-  args:
-  - --destination=us-west2-docker.pkg.dev/stock-prices-project/stock-prices-repo/stock_prices:latest
-  - --cache=true
-  - --cache-ttl=24h
-  id: image
-- name: gcr.io/cloud-builders/gcloud
-  entrypoint: "bash"
-  args:
-  - "-c"
-  - |
-      gcloud run deploy stock_prices \
-        --image=us-west2-docker.pkg.dev/stock-prices-project/stock-prices-repo/stock_prices:latest \
-        --platform=managed \
-        --region=us-central1 \
-        --project=stock-prices-project
-  waitFor: ['image']
-options:
-    machineType: 'E2_HIGHCPU_32'
+  - --trigger-http 
+
 timeout: 14400s

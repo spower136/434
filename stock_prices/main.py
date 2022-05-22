@@ -2,7 +2,7 @@ from google.cloud import bigquery
 from google.oauth2 import service_account
 from google.cloud import storage
 import stock_prices
-from utils import get_client
+from webapp.utils import get_client
 import pandas as pd
 from os import path, environ
 
@@ -17,7 +17,7 @@ def bq_create_dataset():
     dataset = bigquery_client.create_dataset(dataset)
     print('Dataset {} created.'.format(dataset.dataset_id))
 
-
+# bq_create_dataset()
 
 def bq_create_table():
     # bigquery_client = bigquery.Client(project=project, credentials=credentials)
@@ -25,7 +25,7 @@ def bq_create_table():
 
     # Prepares a reference to the table
     table_ref = dataset_ref.table('stock_details')
-    table_ref = 'msds-434-347202.stock_prices.stock_details'
+    table_ref = 'stock-prices-project.stock_prices.stock_details'
 
     # table = bigquery.Table('msds-434-347202.stock_prices.stock_details', schema=schema)
     table = bigquery_client.create_table(table)
@@ -71,5 +71,5 @@ def main():
     )  # Make an API request.
     job.result()  # Wait for the job to complete.
 
-
-main()
+if __name__ == "__main__":
+    main()
